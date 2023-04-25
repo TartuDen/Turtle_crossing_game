@@ -26,18 +26,21 @@ screen.listen()
 screen.onkeypress(turtler.go_up,"Up")
 
 game_over=False
-print(f"my score - {score.score}, highest score - {score.high_score}")
+print(f"Let's start! Can you beat he highest score so far -{score.high_score}?")
+score.write_on_screen()
 while not game_over:
     time.sleep(speed)
     x_walker, y_walker = turtler.turtle_walker.position()
     if y_walker>=265:
-        print(f"my score - {score.score}, highest score - {score.high_score}")
         turtler.turtle_walker.goto(0,-280)
         speed=speed-0.5*speed
         score.score+=1
+        score.write_on_screen()
+        print(f"my score - {score.score}, highest score - {score.high_score}")
         if int(score.score) > int(score.high_score):
             score.update_file()
-            # print(f"my score - {score.score}, highest score - {score.high_score}")
+            print(f"Congratualtion, your score  - {score.score} is the new HIGHEST SCORE!")
+            
     
     for c in list_of_cars:
         c.move_car()
